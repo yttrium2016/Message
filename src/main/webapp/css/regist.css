@@ -1,0 +1,45 @@
+body {
+    padding-bottom: 40px;
+    background-color: #eee;
+    padding-top: 70px;
+}
+div[id="my"]{
+    text-align:center
+}
+
+div[class="alert"]{
+    background-color: #eee; 
+}
+form{
+    border: 0px solid gray;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+form input,select,img{
+    margin-top: 5px;
+
+}
+form label[class="radio-inline"]{
+    margin-left: 25%;
+
+    margin-top: 5px;
+}
+form label{
+    margin-top: 5px;
+}
+
+/*form input.radio{*/
+    /*width: 10px;*/
+    /*height: 30px;*/
+    /*margin-top: 0px;*/
+    /*position:relative;*/
+    /*top:10px;*/
+/*}*/
+form button,a[class="btn btn-lg btn-primary"]{
+    width: 32%;
+    position:relative;
+    top:10px;
+}
+
+

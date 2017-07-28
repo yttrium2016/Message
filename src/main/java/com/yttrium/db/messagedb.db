@@ -1,0 +1,30 @@
+create database messagedb;
+use messagedb;
+
+#注册邮箱信息表
+CREATE TABLE register(
+	register_id INT  NOT NULL AUTO_INCREMENT, #主键ID
+	email_address VARCHAR(50)   NULL,  #邮箱地址
+	email_code VARCHAR(50)   NULL, #随机码
+	PRIMARY KEY (register_id)
+) ;
+
+#用户表登录
+CREATE TABLE user(
+	user_id INT  NOT NULL AUTO_INCREMENT, #主键ID
+	user_name VARCHAR(50)   NULL,  #用户姓名
+	user_email VARCHAR(50)   NULL, #登录名
+	password VARCHAR(50)  NULL,   #密码#
+	PRIMARY KEY (user_id)
+) ;
+
+#留言表 
+CREATE TABLE `message` (
+  `message_id` INT NOT NULL AUTO_INCREMENT, #主键ID
+  `message_title` varchar(60) NOT NULL, #标题
+  `message_content` text NOT NULL, # 内容
+  `message_time` datetime NOT NULL, # 时间
+  `user_id` INT NOT NULL, #用户id
+  PRIMARY KEY (`message_id`), 
+  KEY `user_id` (`user_id`)
+);

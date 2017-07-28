@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yttrium.mapper.RegisterMapper">
+  <resultMap id="BaseResultMap" type="com.yttrium.domain.Register">
+    <id column="register_id" jdbcType="INTEGER" property="registerId" />
+    <result column="email_address" jdbcType="VARCHAR" property="emailAddress" />
+    <result column="email_code" jdbcType="VARCHAR" property="emailCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    register_id, email_address, email_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from register
+    where register_id = #{registerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from register
+    where register_id = #{registerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yttrium.domain.Register">
+    insert into register (register_id, email_address, email_code
+      )
+    values (#{registerId,jdbcType=INTEGER}, #{emailAddress,jdbcType=VARCHAR}, #{emailCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yttrium.domain.Register">
+    insert into register
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="registerId != null">
+        register_id,
+      </if>
+      <if test="emailAddress != null">
+        email_address,
+      </if>
+      <if test="emailCode != null">
+        email_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="registerId != null">
+        #{registerId,jdbcType=INTEGER},
+      </if>
+      <if test="emailAddress != null">
+        #{emailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCode != null">
+        #{emailCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yttrium.domain.Register">
+    update register
+    <set>
+      <if test="emailAddress != null">
+        email_address = #{emailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="emailCode != null">
+        email_code = #{emailCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where register_id = #{registerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yttrium.domain.Register">
+    update register
+    set email_address = #{emailAddress,jdbcType=VARCHAR},
+      email_code = #{emailCode,jdbcType=VARCHAR}
+    where register_id = #{registerId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from register
+    where email_code = #{code,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByEmail" parameterType="java.lang.String">
+    delete from register
+    where email_address = #{emailAddress,jdbcType=VARCHAR}
+  </delete>
+</mapper>
